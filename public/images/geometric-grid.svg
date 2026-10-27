@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Abstract Google color geometry</title>
+  <desc id="desc">A blue field with white grid lines and red, yellow, and green geometric accents.</desc>
+  <rect width="1200" height="900" fill="#4285f4"/>
+  <g fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="2">
+    <path d="M0 150h1200M0 300h1200M0 450h1200M0 600h1200M0 750h1200"/>
+    <path d="M150 0v900M300 0v900M450 0v900M600 0v900M750 0v900M900 0v900M1050 0v900"/>
+  </g>
+  <circle cx="230" cy="220" r="115" fill="#fff" fill-opacity=".95"/>
+  <circle cx="230" cy="220" r="58" fill="#4285f4"/>
+  <rect x="755" y="150" width="250" height="250" rx="38" fill="#ea4335"/>
+  <path d="M650 705 785 470l135 235z" fill="#fbbc04"/>
+  <rect x="180" y="580" width="310" height="92" rx="46" fill="#34a853"/>
+  <circle cx="1030" cy="700" r="82" fill="#fff" fill-opacity=".92"/>
+</svg>

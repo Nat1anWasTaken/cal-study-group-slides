@@ -1,0 +1,24 @@
+{
+  "name": "slidev-theme-google-inspired-local",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A deck-local Google-inspired theme for Slidev",
+  "keywords": ["slidev-theme", "slidev"],
+  "engines": {
+    "slidev": ">=52.0.0"
+  },
+  "slidev": {
+    "colorSchema": "light",
+    "defaults": {
+      "aspectRatio": "16/9",
+      "canvasWidth": 980,
+      "fonts": {
+        "sans": "Google Sans,Product Sans,Arial",
+        "mono": "Roboto Mono,SFMono-Regular,Consolas,monospace",
+        "local": "Google Sans,Product Sans,Arial,Roboto Mono,SFMono-Regular,Consolas",
+        "provider": "none",
+        "weights": "400,500,600,700"
+      }
+    }
+  }
+}
