@@ -4,6 +4,11 @@ layout: section
 
 # isPrimeFactorOf()
 
+<!--
+- 下一題：isPrimeFactorOf()
+- 先看題目給的註解，它告訴我們這個 function 要做什麼
+-->
+
 ---
 layout: figure
 clicks: 3
@@ -24,13 +29,20 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="0.95rem">
 
-<p v-click="1"><code>@param</code>：每個參數是什麼</p>
+<p v-click="1"><code>@param</code>：參數</p>
 
-<p v-click="2"><code>@return</code>：回傳的是什麼</p>
+<p v-click="2"><code>@return</code>：回傳值</p>
 
-<p v-click="3">呼叫的人照著用，實作的人照著寫</p>
+<p v-click="3">呼叫的人 ⇄ 實作的人</p>
 
 </CodeBlock>
+
+<!--
+- 題目在 prototype 上面放了一段 block comment（/** ... */），說明這個 function 要做什麼
+- [click] @param：每個參數是什麼，test_no 和 num 都是整數
+- [click] @return：回傳的是什麼，是質因數就回傳 true，不然就回傳 false，所以回傳型別是 bool
+- [click] 呼叫的人照著註解用，實作的人照著註解寫，兩邊不用看對方的 code
+-->
 
 ---
 layout: figure
@@ -55,9 +67,16 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.2rem">
 
-<p>先把第 6 週寫過的「是質數嗎？」變成 function</p>
+<p>第 6 週：是質數嗎？</p>
 
 </CodeBlock>
+
+<!--
+- 「質因數」= 是質數，而且是因數
+- 「是質數嗎？」第 6 週已經寫過了，就是這支程式
+- 先把它變成 function，等一下直接拿來用
+- 注意它現在是讀 input、印出 yes / no
+-->
 
 ---
 layout: figure
@@ -78,19 +97,29 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.2rem">
 
-<p>印出 yes / no，變成 return <code class="type">true</code> / <code class="type">false</code></p>
+<p>yes / no → <code class="type">true</code> / <code class="type">false</code></p>
 
-<p>所以回傳型別是 <code class="type">bool</code></p>
-
-<p>小心：<code>1</code> 不是質數</p>
+<p>→ <code class="type">bool</code></p>
 
 </CodeBlock>
+
+<!--
+- scanf 讀進來的 n 變成參數
+- 印出 yes / no，變成 return true / false
+- 回傳的是 true / false，所以回傳型別是 bool
+- 小心：1 不是質數，這個版本還沒處理，正解會補上 n < 2 的檢查
+-->
 
 ---
 layout: statement
 ---
 
 # input 變 *parameter*<br>output 變 *return*
+
+<!--
+- 這就是剛剛做的事：input 變 parameter，output 變 return
+- 等一下 gcd 也會再做一次一樣的事
+-->
 
 ---
 layout: figure
@@ -111,13 +140,13 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" :trace="[5, 1, 1, 1, 1, 5]" size="1.05rem">
 
-<p>質因數 = 是質數，<strong>而且</strong>是因數：剛剛的 <code>isPrime</code> 直接拿來用</p>
+<p>質因數 = <code>isPrime</code> <code>&amp;&amp;</code> 整除</p>
 
-<p v-click="2">代進去：<code>test_no</code> 是 <code>179</code>，<code>num</code> 是 <code>358</code></p>
+<p v-click="2"><code>test_no</code> = <code>179</code><br><code>num</code> = <code>358</code></p>
 
-<p v-click="5">兩邊都是 <code class="type">true</code>，<code>&amp;&amp;</code> 才是 <code class="type">true</code></p>
+<p v-click="5"><code class="type">true</code> <code>&amp;&amp;</code> <code class="type">true</code> → <code class="type">true</code></p>
 
-<p v-click="6"><code>ans</code> 拿到 <code class="type">true</code></p>
+<p v-click="6"><code>ans</code> = <code class="type">true</code></p>
 
 </CodeBlock>
 
@@ -127,6 +156,17 @@ code: |
   min-width: 38rem;
 }
 </style>
+
+<!--
+- 直接看一個例子
+- 質因數 = 是質數，而且是因數，剛剛的 isPrime 直接拿來用，因數就是 num % test_no == 0
+- [click] 從 main 開始：呼叫 isPrimeFactorOf(179, 358)
+- [click] 跳進 function，代進去：test_no 是 179，num 是 358
+- [click] isPrime(179)：179 是質數，true
+- [click] 358 % 179 == 0：整除，true
+- [click] 兩邊都是 true，&& 才是 true
+- [click] 回到 main，ans 拿到 true
+-->
 
 ---
 layout: figure
@@ -147,13 +187,13 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" :trace="[5, 1, 1, 1, 1, 5]" size="1.05rem">
 
-<p v-click="2">代進去：<code>test_no</code> 是 <code>4</code>，<code>num</code> 是 <code>16</code></p>
+<p v-click="2"><code>test_no</code> = <code>4</code><br><code>num</code> = <code>16</code></p>
 
-<p v-click="4"><code>4</code> 是 <code>16</code> 的因數，但不是質數</p>
+<p v-click="4">整除 ✓　質數 ✗</p>
 
-<p v-click="5">一邊是 <code class="type">false</code>，結果就是 <code class="type">false</code></p>
+<p v-click="5"><code class="type">false</code> <code>&amp;&amp;</code> <code class="type">true</code> → <code class="type">false</code></p>
 
-<p v-click="6"><code>ans</code> 拿到 <code class="type">false</code></p>
+<p v-click="6"><code>ans</code> = <code class="type">false</code></p>
 
 </CodeBlock>
 
@@ -163,6 +203,16 @@ code: |
   min-width: 38rem;
 }
 </style>
+
+<!--
+- 再一個：isPrimeFactorOf(4, 16)
+- [click] main 呼叫 isPrimeFactorOf(4, 16)
+- [click] 跳進 function，代進去：test_no 是 4，num 是 16
+- [click] isPrime(4)：4 = 2 × 2，不是質數，false
+- [click] 16 % 4 == 0，4 是 16 的因數，true，但它不是質數
+- [click] 只要一邊是 false，&& 的結果就是 false
+- [click] ans 拿到 false
+-->
 
 ---
 layout: figure
@@ -192,8 +242,14 @@ code: |
 
 <p class="answer-badge">✓ 正解</p>
 
-<p>先寫好 <code>isPrime</code>，記得 <code>n &lt; 2</code> 不是質數</p>
+<p><code>n &lt; 2</code> → <code class="type">false</code></p>
 
-<p>是質數 <code>&amp;&amp;</code> 能整除，就是質因數</p>
+<p>質數 <code>&amp;&amp;</code> 整除</p>
 
 </CodeBlock>
+
+<!--
+- 正解：先寫好 isPrime，記得 n < 2（0、1）不是質數，要直接 return false
+- isPrimeFactorOf 只有一行：是質數 && 能整除，就是質因數
+- main 和 prototype 題目都給了，只要寫 function
+-->

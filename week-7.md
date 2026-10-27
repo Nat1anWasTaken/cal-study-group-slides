@@ -9,6 +9,11 @@ layout: cover
 
 # Week 7: Functions
 
+<!--
+- 今天的主題是 function
+- 先從數學的 f(x) 開始，接到 C 的寫法
+-->
+
 ---
 src: ./slides/week-7/01-functions.md
 ---
@@ -27,11 +32,19 @@ layout: section
 
 # Take a break!
 
+<!--
+- 休息一下
+-->
+
 ---
 layout: section
 ---
 
 # Let's move on to <br> the real problems!
+
+<!--
+- 休息完，開始寫今天的題目
+-->
 
 ---
 layout: figure
@@ -42,6 +55,11 @@ layout: figure
 ::figure::
 
 <LinkQr url="https://cycu-cal.nath.tw" />
+
+<!--
+- 題目都在這個網站，掃 QR code 打開
+- 接下來一題一題講，每題最後都有正解
+-->
 
 ---
 src: ./slides/week-7/04-prototype.md
@@ -89,6 +107,11 @@ layout: section
 
 # Yay!
 
+<!--
+- 今天的題目全部講完了！
+- 最後回顧一下今天學到的東西
+-->
+
 ---
 layout: figure
 code: |
@@ -105,13 +128,19 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.1rem">
 
-<p v-click><strong>function</strong> 就像數學的 f(x)</p>
+<p v-click><strong>function</strong> ≈ f(x)</p>
 
-<p v-click>給它 input（<strong>parameter</strong> <code>x</code>），它算出 output（<strong>return</strong>）</p>
+<p v-click><strong>parameter</strong> <code>x</code> → <strong>return</strong></p>
 
-<p v-click>function call 在哪裡，return 的值就放在哪裡</p>
+<p v-click>call 的位置 ← return 的值</p>
 
 </CodeBlock>
+
+<!--
+- [click] function 就像數學的 f(x)
+- [click] 給它 input（parameter x），它算出 output（return）
+- [click] function call 在哪裡，return 的值就放在哪裡：linear(5) 直接變成 13
+-->
 
 ---
 layout: figure
@@ -135,13 +164,19 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.1rem">
 
-<p v-click>函式名稱前面的<strong>回傳型別</strong>，決定回傳什麼</p>
+<p v-click><strong>回傳型別</strong></p>
 
-<p v-click><code>bool</code> 回傳 true / false，<code>int</code> 回傳整數</p>
+<p v-click><code>bool</code> → true / false　<code>int</code> → 整數</p>
 
-<p v-click><code>void</code>：不回傳，只做事</p>
+<p v-click><code>void</code> → 不回傳</p>
 
 </CodeBlock>
+
+<!--
+- [click] 函式名稱前面的回傳型別，決定回傳什麼
+- [click] bool 回傳 true / false，int 回傳整數
+- [click] void 不回傳，只做事
+-->
 
 ---
 layout: figure
@@ -166,13 +201,19 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.1rem">
 
-<p v-click>呼叫之前要先「看過」</p>
+<p v-click>呼叫前要先「看過」</p>
 
-<p v-click>把 <strong>prototype</strong> 放在 <code>main</code> 上面</p>
+<p v-click><strong>prototype</strong> 放 <code>main</code> 上面</p>
 
-<p v-click>定義寫在後面也沒關係</p>
+<p v-click>定義放後面 ✓</p>
 
 </CodeBlock>
+
+<!--
+- [click] function 要在呼叫之前先「看過」，否則 compiler 不認得
+- [click] 所以把 prototype 放在 main 上面
+- [click] 真正的定義寫在後面也沒關係
+-->
 
 ---
 layout: figure
@@ -198,11 +239,16 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.1rem">
 
-<p v-click>變數只活在宣告它的 <code>{}</code> 裡</p>
+<p v-click>變數只活在它的 <code>{}</code></p>
 
-<p v-click>全域變數大家都能改，小心被偷改</p>
+<p v-click>全域變數：大家都能改 ⚠</p>
 
 </CodeBlock>
+
+<!--
+- [click] 變數只活在宣告它的 {} 裡：for 的 i 出了迴圈就不見
+- [click] 全域變數宣告在所有 function 外面，大家都能改，名字一撞到就會被偷改，要小心
+-->
 
 ---
 layout: figure
@@ -223,13 +269,20 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.1rem">
 
-<p v-click>把寫好的程式變成 function</p>
+<p v-click>程式 → function</p>
 
-<p v-click>input 變 <strong>parameter</strong>：<code>m</code>、<code>n</code> 由呼叫的人給</p>
+<p v-click>input → <strong>parameter</strong></p>
 
-<p v-click>output 變 <strong>return</strong>：<code>printf</code> 換成 <code>return m;</code></p>
+<p v-click><code>printf</code> → <code>return m;</code></p>
 
 </CodeBlock>
+
+<!--
+- gcd 那題的重點
+- [click] 把寫好的程式包成 function
+- [click] 原本 scanf 讀的 input 變成 parameter：m、n 由呼叫的人給
+- [click] 原本 printf 的 output 變成 return：printf 換成 return m;
+-->
 
 ---
 layout: figure
@@ -253,13 +306,19 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.1rem">
 
-<p v-click>寫好的 function 可以重複用</p>
+<p v-click>function 可以重複用</p>
 
-<p v-click><code>isFactorialOf</code> 直接呼叫 <code>factorial</code></p>
+<p v-click><code>isFactorialOf</code> → <code>factorial</code></p>
 
-<p v-click>同樣的邏輯不用再寫一次</p>
+<p v-click>不用再寫一次</p>
 
 </CodeBlock>
+
+<!--
+- [click] 寫好的 function 可以重複用
+- [click] isFactorialOf 直接呼叫 factorial
+- [click] 同樣的邏輯不用再寫一次
+-->
 
 ---
 layout: figure
@@ -281,11 +340,16 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.1rem">
 
-<p v-click>字元其實是整數</p>
+<p v-click>字元 = 整數</p>
 
-<p v-click><code>'A'</code> 就是 <code>65</code>，可以直接加進 <code>sum</code></p>
+<p v-click><code>'A'</code> = <code>65</code></p>
 
 </CodeBlock>
+
+<!--
+- [click] 字元其實就是整數
+- [click] 'A' 就是 65，所以可以直接加進 sum
+-->
 
 ---
 layout: figure
@@ -304,15 +368,23 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.1rem">
 
-<p v-click>小數存的是近似值，不能直接用 <code>==</code></p>
+<p v-click>小數 = 近似值，別用 <code>==</code></p>
 
-<p v-click>比較時要留一點誤差 <code>delta</code></p>
+<p v-click>差距 ≤ <code>delta</code> → 相等</p>
 
 </CodeBlock>
 
+<!--
+- [click] 小數存的是近似值，0.1 存進去其實不是 0.1，所以不能直接用 ==
+- [click] 比較時要留一點誤差：差距 ≤ delta 就當成相等
+-->
 
 ---
 layout: section
 ---
 
 # Congrats!
+
+<!--
+- 恭喜大家完成第七週！
+-->

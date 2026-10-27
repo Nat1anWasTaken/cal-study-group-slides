@@ -4,6 +4,11 @@ layout: section
 
 # factorial()
 
+<!--
+- 下一題：factorial()，算 n 的階乘
+- 先從數學開始，等一下再變成 code
+-->
+
 ---
 layout: figure
 clicks: 6
@@ -69,6 +74,16 @@ $n! = 1 \times 2 \times \cdots \times n$，而 $0! = 1$
 }
 </style>
 
+<!--
+- 階乘就是從 1 一路乘到 n
+- [click] 1! = 1
+- [click] 2! = 1 × 2 = 2
+- [click] 3! = 1 × 2 × 3 = 6
+- [click] 4! = 24
+- [click] 5! = 120
+- [click] 一般來說 n! = 1 × 2 × … × n；特別規定 0! = 1
+-->
+
 ---
 layout: figure
 clicks: 7
@@ -93,7 +108,7 @@ clicks: 7
 
 <div v-click="7" class="fact-rule">
 
-每一步都是：上一步的 $\text{result}$ $\times$ 下一個數 $i$
+$\text{result} = \text{result} \times i$
 
 </div>
 
@@ -135,6 +150,17 @@ clicks: 7
 }
 </style>
 
+<!--
+- 電腦一次只能乘一個數，所以我們用一個 result 記住「目前乘到哪」
+- [click] result 從 1 開始（不是 0，乘 0 就全部變 0 了）
+- [click] × 1
+- [click] × 2
+- [click] × 3
+- [click] × 4
+- [click] × 5，得到 120
+- [click] 每一步都是：上一步的 result × 下一個數 i，這就是迴圈裡那一行
+-->
+
 ---
 layout: figure
 clicks: 14
@@ -155,9 +181,9 @@ code: |
 
 <StepTable :head="['i', 'result']" :rows="[['開始', 1], [1, 1], [2, 2], [3, 6], [4, 24], [5, 120]]" :steps="[2, 4, 6, 8, 10, 12]" :good="5" />
 
-<p v-click="13" class="fact-exit"><code>6 &lt;= 5</code> 不成立，離開迴圈</p>
+<p v-click="13" class="fact-exit"><code>6 &lt;= 5</code> ✗</p>
 
-<p v-click="14" class="fact-exit">印出 <code>120</code> ✓</p>
+<p v-click="14" class="fact-exit">→ <code>120</code> ✓</p>
 
 </CodeBlock>
 
@@ -166,6 +192,18 @@ code: |
   margin-top: 1rem !important;
 }
 </style>
+
+<!--
+- 把剛剛的過程寫成 code，n = 5 跑一次
+- [click:2] result = 1，進迴圈前的初始值
+- [click:2] i = 1：result = 1
+- [click:2] i = 2：result = 2
+- [click:2] i = 3：result = 6
+- [click:2] i = 4：result = 24
+- [click:2] i = 5：result = 120
+- [click] i 變成 6，6 <= 5 不成立，離開迴圈
+- [click] 印出 120 ✓
+-->
 
 ---
 layout: figure
@@ -195,13 +233,18 @@ steps:
 
 <CodeBlock :steps="$frontmatter.steps" size="1.3rem">
 
-剛剛算 $5!$ 的程式，換掉頭尾就好
+<p v-click="1"><code>n</code> → <strong>parameter</strong></p>
 
-<p v-click="1"><code>n</code> 不再寫死，變成 <strong>parameter</strong></p>
-
-<p v-click="1"><code>printf</code> 變成 <strong>return</strong></p>
+<p v-click="1"><code>printf</code> → <strong>return</strong></p>
 
 </CodeBlock>
+
+<!--
+- 剛剛算 5! 的程式，換掉頭尾就好，和 isPrime 一樣
+- [click] n 不再寫死成 5，變成 parameter，由呼叫的人給
+- printf 變成 return，把結果交回去
+- 中間的迴圈一行都不用改
+-->
 
 ---
 layout: figure
@@ -223,13 +266,17 @@ code: |
 
 <p class="answer-badge">✓ 正解</p>
 
-<p><code>main</code> 和 prototype 題目都給了，只要寫這個 function</p>
+$0! = 1$ ✓
 
-$n = 0$ 時迴圈一次都不跑，直接回傳 $1$，剛好就是 $0! = 1$
-
-<p>輸入 <code>9</code>：印出 <code>362880</code></p>
+<p><code>9</code> → <code>362880</code></p>
 
 </CodeBlock>
+
+<!--
+- 正解：main 和 prototype 題目都給了，只要寫這個 function
+- n = 0 時迴圈一次都不跑，直接回傳 1，剛好就是 0! = 1，不用特別處理
+- 輸入 9：印出 362880
+-->
 
 ---
 layout: figure
@@ -251,17 +298,15 @@ code: |
 
 <p class="answer-badge alt">另解</p>
 
-<p>function 也可以呼叫自己，這叫做<strong>遞迴</strong></p>
-
 <v-click at="1">
 
-$0! = 1$：直接回傳 $1$
+$0! = 1$
 
 </v-click>
 
 <v-click at="2">
 
-$n! = n \times (n-1)!$：剩下的交給 <code>factorial(n - 1)</code>
+$n! = n \times (n-1)!$
 
 </v-click>
 
@@ -273,6 +318,13 @@ $n! = n \times (n-1)!$：剩下的交給 <code>factorial(n - 1)</code>
   color: var(--google-blue) !important;
 }
 </style>
+
+<!--
+- 另解：function 也可以呼叫自己，這叫做遞迴
+- [click] 0! = 1：碰到 0 就直接回傳 1，這是停下來的條件
+- [click] n! = n × (n-1)!：自己只乘一個 n，剩下的交給 factorial(n - 1)
+- 沒寫停下來的條件，就會一直呼叫下去
+-->
 
 ---
 layout: figure
@@ -293,8 +345,19 @@ steps:
 
 <ExprSteps :steps="$frontmatter.steps" size="2.2rem">
 
-<p>每一層都把問題交給更小的 <code>factorial</code></p>
+<p>一層交給下一層</p>
 
-<p v-click="5">碰到 <code>factorial(0)</code> 就停，一路乘回來</p>
+<p v-click="5"><code>factorial(0)</code> = <code>1</code>，乘回來</p>
 
 </ExprSteps>
+
+<!--
+- 用 factorial(4) 看遞迴怎麼展開
+- 每一層都把問題交給更小的 factorial
+- [click] 4 × factorial(3)
+- [click] 4 × 3 × factorial(2)
+- [click] 4 × 3 × 2 × factorial(1)
+- [click] 4 × 3 × 2 × 1 × factorial(0)
+- [click] 碰到 factorial(0) 就停，回傳 1
+- [click] 一路乘回來：24
+-->

@@ -4,6 +4,11 @@ layout: section
 
 # 全域變數是什麼東東？
 
+<!--
+- 下一題在講全域變數
+- 在講全域之前，先弄清楚「變數活在哪裡」：scope
+-->
+
 ---
 layout: figure
 clicks: 2
@@ -24,13 +29,19 @@ code: |
 
 <CodeBlock :code="$frontmatter.code">
 
-<p>變數只活在宣告它的 <code>{}</code> 裡</p>
+<p>活在宣告它的 <code>{}</code> 裡</p>
 
-<p v-click="1"><code>score</code> 宣告在 <code>main</code> 的 <code>{}</code>：<code>if</code> 裡面也看得到 ✓</p>
+<p v-click="1"><code>score</code>：<code>main</code> 的 <code>{}</code> ✓</p>
 
-<p v-click="2"><code>bonus</code> 宣告在 <code>if</code> 的 <code>{}</code>：出了 <code>}</code> 就看不到了 ✗</p>
+<p v-click="2"><code>bonus</code>：<code>if</code> 的 <code>{}</code> ✗</p>
 
 </CodeBlock>
+
+<!--
+- 規則只有一條：變數只活在宣告它的 {} 裡
+- [click] score 宣告在 main 的 {}，if 在 main 裡面，所以 if 裡面也看得到 ✓
+- [click] bonus 宣告在 if 的 {}，出了那個 } 就看不到了，最後一行會編譯錯誤 ✗
+-->
 
 ---
 layout: figure
@@ -50,11 +61,15 @@ code: |
 
 <CodeBlock :code="$frontmatter.code">
 
-<p><code>for</code> 括號裡宣告的 <code>i</code>，只活在這個迴圈裡</p>
-
-<p>迴圈一結束，<code>i</code> 就不見了</p>
+<p><code>i</code> 只活在 <code>for</code> 裡</p>
 
 </CodeBlock>
+
+<!--
+- for 也一樣：for 括號裡宣告的 i，只活在這個迴圈裡
+- 迴圈一結束，i 就不見了，最後一行看不到 i ✗
+- 那如果迴圈結束後還想用 i 呢？
+-->
 
 ---
 layout: figure
@@ -74,11 +89,16 @@ code: |
 
 <CodeBlock :code="$frontmatter.code">
 
-<p>想在迴圈外面用，就宣告在迴圈外面</p>
+<p>宣告搬到外面</p>
 
-<p>這次印得出來：<code>3</code></p>
+<p>→ <code>3</code> ✓</p>
 
 </CodeBlock>
+
+<!--
+- 想在迴圈外面用，就宣告在迴圈外面
+- 這次 i 活在 main 的 {} 裡，迴圈結束後還在，印得出來：3
+-->
 
 ---
 layout: figure
@@ -104,9 +124,18 @@ code: |
 
 <StepTable :head="['第幾圈', 'n', 'sum']" :rows="[[1, 3, '0 → 3'], [2, 2, '0 → 2'], [3, 1, '0 → 1']]" :steps="[4, 8, 12]" />
 
-<p v-click="15">每一圈進到 <code>{}</code>，都是一個全新的 <code>sum</code>，而且迴圈外面看不到它</p>
+<p v-click="15">每圈一個新的 <code>sum</code> ✗</p>
 
 </CodeBlock>
+
+<!--
+- 再來看 while 的 {}：sum 宣告在迴圈裡面，會發生什麼事？
+- [click] 跟著執行一行一行走
+- [click:3] 第一圈：進到 {}，宣告一個新的 sum = 0，加上 n 變 3
+- [click:4] 第二圈：又是一個全新的 sum = 0，加完變 2，上一圈的 3 沒了
+- [click:4] 第三圈：一樣，0 → 1
+- [click:3] 走到 printf：每一圈進到 {} 都是全新的 sum，而且迴圈外面根本看不到它，編譯錯誤 ✗
+-->
 
 ---
 layout: figure
@@ -131,15 +160,27 @@ code: |
 
 <StepTable :head="['第幾圈', 'n', 'sum']" :rows="[[1, 3, '0 → 3'], [2, 2, '3 → 5'], [3, 1, '5 → 6']]" :good="2" />
 
-<p v-click="3">宣告搬到迴圈外面：<code>sum</code> 一路累加，迴圈外也看得到，印出 <code>6</code></p>
+<p v-click="3">一路累加 → <code>6</code> ✓</p>
 
 </CodeBlock>
+
+<!--
+- 把 sum 的宣告搬到迴圈外面
+- [click] 第一圈 0 → 3
+- [click] 第二圈 3 → 5，這次 sum 接著上一圈的值
+- [click] 第三圈 5 → 6；sum 一路累加，迴圈外也看得到，印出 6 ✓
+-->
 
 ---
 layout: statement
 ---
 
 # 變數只活在*宣告它的 {} 裡*
+
+<!--
+- 小結：變數只活在宣告它的 {} 裡
+- 那如果宣告在所有 {} 的外面呢？→ 全域變數
+-->
 
 ---
 layout: figure
@@ -167,11 +208,16 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.1rem">
 
-<p v-click="1">宣告在所有 function 的外面：<strong>全域變數</strong></p>
+<p v-click="1"><strong>全域變數</strong></p>
 
-<p v-click="2">每個 function 都看得到、改得到<strong>同一個</strong> <code>count</code></p>
+<p v-click="2">共用<strong>同一個</strong> <code>count</code></p>
 
 </CodeBlock>
+
+<!--
+- [click] count 宣告在所有 function 的外面，這就是全域變數
+- [click] increase、decrease、main 每個 function 都看得到、改得到同一個 count
+-->
 
 ---
 layout: figure
@@ -192,15 +238,23 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.3rem">
 
-<p v-click="1">全域的 <code>count</code></p>
+<p v-click="1">全域 <code>count</code></p>
 
-<p v-click="2">這行改的是全域的 <code>count</code></p>
+<p v-click="2">→ 改全域</p>
 
-<p v-click="3">這裡又宣告了一個同名的 <code>count</code>，只活在 <code>setCount</code> 的 <code>{}</code> 裡</p>
+<p v-click="3">同名的區域 <code>count</code></p>
 
-<p v-click="4">所以這行改的是這個新的，函式結束就消失了</p>
+<p v-click="4">→ 改區域，結束就消失</p>
 
 </CodeBlock>
+
+<!--
+- 這是題目給的 setCount，仔細看它在改哪個 count
+- [click] 最上面是全域的 count
+- [click] 第一行 count = 0：這時還沒有別的 count，改的是全域的
+- [click] 接著又宣告了一個同名的 count，它只活在 setCount 的 {} 裡
+- [click] 所以 count = value 改的是這個新的區域 count，函式一結束它就消失了，全域的根本沒被設到
+-->
 
 ---
 layout: figure
@@ -256,6 +310,19 @@ code: |
 }
 </style>
 
+<!--
+- 把整個程式跑一次，輸入 3 1 0：increase 3 次、decrease 1 次、setCount(0)
+- [click] 從 main 開始
+- [click] increase() 三次，全域 count 變 1、2、3
+- [click:6] 呼叫 setCount(0)
+- [click] count = 0：改的是全域的，變 0
+- [click] int count;：宣告一個新的區域 count，值未知
+- [click] count = value：改的是區域的 0，全域還是 0
+- [click:2] decrease() 一次，全域變 -1
+- [click:2] 印出 -1，和範例一樣 ✓
+- 範例過了，可是……
+-->
+
 ---
 layout: figure
 clicks: 9
@@ -310,6 +377,16 @@ code: |
 }
 </style>
 
+<!--
+- 換一組輸入：5 2 10，increase 5 次、decrease 2 次、setCount(10)
+- [click:2] increase() 五次，全域 count = 5
+- [click:2] count = 0：全域變 0
+- [click] int count;：新的區域 count
+- [click] count = value：10 給了區域的那個，全域還是 0 ← 錯在這裡
+- [click:2] decrease() 兩次，全域變 -2
+- [click] 印出 -2，可是正確答案應該是 10 - 2 = 8 ✗
+-->
+
 ---
 layout: statement
 ---
@@ -335,11 +412,14 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.3rem">
 
-<p>問題出在這行：它宣告了一個同名的區域 <code>count</code></p>
-
-<p>把它刪掉</p>
+<p>同名的區域 <code>count</code> → 刪掉</p>
 
 </CodeBlock>
+
+<!--
+- 問題出在 int count; 這行：它宣告了一個同名的區域 count，把全域的擋住了
+- 解法：把它刪掉
+-->
 
 ---
 layout: figure
@@ -375,12 +455,19 @@ steps:
 
 <p class="answer-badge">✓ 正解</p>
 
-<p v-click="1">刪掉之後，這兩行的 <code>count</code> 都是全域的那個</p>
+<p v-click="1">都是全域的 <code>count</code></p>
 
-<p v-click="1">輸入 <code>5 2 10</code>：<code>5</code> → <code>0</code> → <code>10</code> → 印出 <code>8</code> ✓</p>
+<p v-click="1"><code>5 2 10</code>：<code>5</code> → <code>0</code> → <code>10</code> → <code>8</code> ✓</p>
 
-<p v-click="2"><code>count = 0;</code> 也可以刪：下一行馬上就把它改掉了，留著沒用</p>
+<p v-click="2"><code>count = 0;</code> 也可以刪</p>
 
-<p v-click="2">全域變數大家都能改，名字一撞到就會出事，要小心用</p>
+<p v-click="2">全域變數：小心撞名</p>
 
 </CodeBlock>
+
+<!--
+- [click] 刪掉之後，這兩行的 count 都是全域的那個
+- 再跑一次 5 2 10：increase 五次 5 → 歸零 0 → 設成 10 → decrease 兩次，印出 8 ✓
+- [click] count = 0; 也可以刪：下一行馬上就把它改掉了，留著沒用
+- 提醒：全域變數大家都能改，名字一撞到就會出事，要小心用
+-->

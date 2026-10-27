@@ -4,6 +4,10 @@ layout: section
 
 # 回到 Functions！
 
+<!--
+- 知道 bool 是什麼之後，回到 function，把回傳型別講清楚
+-->
+
 ---
 layout: figure
 transition: view-transition
@@ -24,15 +28,22 @@ main: |
 
 <CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main">
 
-<p v-click="1">還記得嗎？</p>
+<p v-click="1"><strong>回傳型別</strong></p>
 
-<p v-click="1">函式名稱前面寫的 <code class="type">bool</code>，就是<strong>回傳型別</strong></p>
+<p v-click="1"><code class="type">bool</code></p>
 
-<p v-click="2">代表 return 出來的值，一定是 <code class="type">true</code> 或 <code class="type">false</code></p>
+<p v-click="2">return → <code class="type">true</code> / <code class="type">false</code></p>
 
-<p v-click="3">所以 <code>is_even(4)</code> 換回來的，就是一個 <code class="type">bool</code></p>
+<p v-click="3"><code>is_even(4)</code> → <code class="type">bool</code></p>
 
 </CodeCall>
+
+<!--
+- 還記得 is_even 嗎？
+- [click] 函式名稱前面寫的 bool，就是回傳型別
+- [click] 它保證 return 出來的值，一定是 true 或 false
+- [click] 所以 is_even(4) 換回來的，就是一個 bool
+-->
 
 ---
 layout: figure
@@ -52,13 +63,20 @@ main: |
 
 <CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main">
 
-<p v-click="1">這次函式名稱前面寫的是 <code class="type">int</code></p>
+<p v-click="1"><code class="type">int</code></p>
 
-<p v-click="2">代表 return 出來的值，一定是一個整數</p>
+<p v-click="2">return → 整數</p>
 
-<p v-click="3">所以 <code>linear(5)</code> 換回來的 <code>13</code>，就是一個 <code class="type">int</code></p>
+<p v-click="3"><code>linear(5)</code> → <code>13</code>（<code class="type">int</code>）</p>
 
 </CodeCall>
+
+<!--
+- 同樣看 linear
+- [click] 這次函式名稱前面寫的是 int
+- [click] 代表 return 出來的值，一定是一個整數
+- [click] 所以 linear(5) 換回來的 13，就是一個 int
+-->
 
 ---
 layout: figure
@@ -80,9 +98,15 @@ main: |
 
 <code class="type">void</code>：沒有回傳值
 
-沒有值可以放回呼叫的位置，所以不能當成值來用
+不能當值用 ✗
 
 </CodeCall>
+
+<!--
+- 還有一種：void，代表沒有回傳值
+- hello() 只負責印東西，做完就結束
+- 沒有值可以放回呼叫的位置，所以不能拿它當值用：int y = hello(); 是錯的
+-->
 
 ---
 layout: figure
@@ -141,6 +165,13 @@ voidFn: |
 }
 </style>
 
+<!--
+- 三種並排比較
+- bool 回傳 true / false
+- int 回傳整數
+- void 啥也不回傳，只做事
+-->
+
 ---
 example: |
   <<int>> linear(int x) {
@@ -155,9 +186,9 @@ example: |
 <div class="recap">
 <div>
 
-- function 就像數學的 f(x)：給它輸入，它算出輸出
-- function call 在哪裡，return 的值就放在哪裡
-- 函式名稱前面的回傳型別，決定回傳什麼：<code class="type">bool</code>、<code class="type">int</code>，或 <code class="type">void</code> 不回傳
+- function ≈ f(x)
+- call 的位置 ← return 的值
+- 回傳型別：<code class="type">bool</code> / <code class="type">int</code> / <code class="type">void</code>
 
 </div>
 
@@ -179,3 +210,10 @@ code.type {
   color: #c5221f;
 }
 </style>
+
+<!--
+- 早上的部分 recap 一下
+- function 就像數學的 f(x)：給它輸入，它算出輸出
+- function call 在哪裡，return 的值就放在哪裡
+- 函式名稱前面的回傳型別決定回傳什麼：bool、int，或 void 不回傳
+-->

@@ -4,6 +4,11 @@ layout: section
 
 # gcd() & gcd() again
 
+<!--
+- 接下來兩題一起講：gcd() 和 gcd() again
+- 同一個 function，一題你是呼叫的人，一題你是實作的人
+-->
+
 ---
 layout: figure
 clicks: 2
@@ -23,11 +28,11 @@ clicks: 2
     <code v-for="d in [1, 2, 3, 6]" :key="d" :class="{ common: $clicks >= 1 && d <= 2, best: $clicks >= 2 && d === 2 }">{{ d }}</code>
   </div>
 
-<p v-click="1">兩邊都有的：<strong>公因數</strong> <code>1</code>、<code>2</code></p>
+<p v-click="1"><strong>公因數</strong>：<code>1</code>、<code>2</code></p>
 
 <div v-click="2" class="gcd-rule">
 
-最大的那個就是<strong>最大公因數</strong>：$\gcd(4, 6) = 2$
+$\gcd(4, 6) = 2$
 
 </div>
 
@@ -89,6 +94,13 @@ clicks: 2
 }
 </style>
 
+<!--
+- 先複習：最大公因數
+- 4 的因數是 1、2、4；6 的因數是 1、2、3、6
+- [click] 兩邊都有的叫公因數：1 和 2
+- [click] 最大的那個就是最大公因數：gcd(4, 6) = 2
+-->
+
 ---
 layout: figure
 caller: |
@@ -114,11 +126,11 @@ callee: |
 <div class="two-sides">
   <div>
     <CodeSnippet :code="$frontmatter.caller" size="1.05rem" />
-    <p><code>gcd()</code>：你是<strong>呼叫</strong>的人</p>
+    <p><code>gcd()</code>：<strong>呼叫</strong></p>
   </div>
   <div>
     <CodeSnippet :code="$frontmatter.callee" size="1.05rem" />
-    <p><code>gcd() again</code>：你是<strong>實作</strong>的人</p>
+    <p><code>gcd() again</code>：<strong>實作</strong></p>
   </div>
 </div>
 
@@ -138,11 +150,22 @@ callee: |
 }
 </style>
 
+<!--
+- 兩題是同一個 gcd，只是你站的位置不一樣
+- 左邊 gcd()：gcd 已經寫好、藏在 hidden code 裡，你寫 main：讀數字、呼叫、印出來，你是呼叫的人
+- 右邊 gcd() again：main 寫好、藏起來了，它會呼叫 gcd(a, b)，你寫 gcd：算出 GCD 並 return，你是實作的人
+-->
+
 ---
 layout: statement
 ---
 
 # 兩邊只靠 *prototype* 溝通
+
+<!--
+- 兩邊都看不到對方的 code，只靠 prototype：名字、參數、回傳型別
+- 先講 gcd()，我們是呼叫的人
+-->
 
 ---
 layout: figure
@@ -165,17 +188,23 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" :trace="[4, 6, 6, 5]" size="1.15rem">
 
-<p>不知道 <code>gcd</code> 裡面怎麼寫，照 prototype 呼叫就好</p>
+<p v-click="1">輸入 <code>4 6</code></p>
 
-<p v-click="1">輸入 <code>4 6</code>：<code>a</code> 是 <code>4</code>，<code>b</code> 是 <code>6</code></p>
+<p v-click="2"><code>gcd(4, 6)</code></p>
 
-<p v-click="2">把 <code>a</code>、<code>b</code> 交給 <code>gcd</code></p>
+<p v-click="3">→ <code>2</code></p>
 
-<p v-click="3"><code>gcd</code> 回傳 <code>2</code>，就填進最後一個 <code>%d</code></p>
-
-<p v-click="4">印出 <code>The GCD of 4 and 6 is 2.</code></p>
+<p v-click="4"><code>The GCD of 4 and 6 is 2.</code></p>
 
 </CodeBlock>
+
+<!--
+- 不知道 gcd 裡面怎麼寫也沒關係，照 prototype 呼叫就好
+- [click] 輸入 4 6：a 是 4，b 是 6
+- [click] 把 a、b 交給 gcd，也就是 gcd(4, 6)
+- [click] gcd 回傳 2，就填進最後一個 %d
+- [click] 印出 The GCD of 4 and 6 is 2.
+-->
 
 ---
 layout: figure
@@ -201,11 +230,15 @@ code: |
 
 <p class="answer-badge">✓ 正解</p>
 
-<p><code>gcd</code> 的回傳值可以直接放進 <code>printf</code></p>
-
-<p>不用先存到變數裡</p>
+<p>回傳值直接放進 <code>printf</code></p>
 
 </CodeBlock>
+
+<!--
+- 正解：gcd 的回傳值可以直接放進 printf
+- 不用先存到變數裡（存也可以）
+- 接下來換邊：gcd() again，我們是實作的人
+-->
 
 ---
 layout: figure
@@ -229,13 +262,13 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" :trace="[2, 3, 4, 5, 6, 3, 4, 5, 6, 3, 4, 5, 6, 3, 8]" size="1.2rem">
 
-<p>輾轉相除法：<code>m</code> 換成 <code>n</code>，<code>n</code> 換成 <code>m % n</code></p>
+<p><code>m</code> ← <code>n</code>，<code>n</code> ← <code>m % n</code></p>
 
 <StepTable :head="['m', 'n', 'm % n']" :rows="[[80, 48, 32], [48, 32, 16], [32, 16, 0]]" :steps="[3, 7, 11]" />
 
-<p v-click="14" class="gcd-exit"><code>n</code> 變成 <code>0</code>，離開迴圈</p>
+<p v-click="14" class="gcd-exit"><code>n == 0</code></p>
 
-<p v-click="15" class="gcd-exit">答案就是 <code>m</code>：印出 <code>16</code> ✓</p>
+<p v-click="15" class="gcd-exit"><code>m</code> → <code>16</code> ✓</p>
 
 </CodeBlock>
 
@@ -244,6 +277,16 @@ code: |
   margin-top: 1rem !important;
 }
 </style>
+
+<!--
+- 要實作 gcd，先回想第 5 週寫過的輾轉相除法
+- 每一圈：m 換成 n，n 換成 m % n
+- [click:3] 輸入 80 48：80 % 48 = 32
+- [click:4] 48 % 32 = 16
+- [click:4] 32 % 16 = 0
+- [click:3] n 變成 0，離開迴圈
+- [click] 答案就是 m：印出 16 ✓
+-->
 
 ---
 layout: figure
@@ -268,13 +311,17 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.25rem">
 
-<p>剛剛的程式，只要換掉頭尾</p>
+<p v-click="1"><code>scanf</code>：input</p>
 
-<p v-click="1"><code>scanf</code> 是 input</p>
-
-<p v-click="2"><code>printf</code> 是 output</p>
+<p v-click="2"><code>printf</code>：output</p>
 
 </CodeBlock>
+
+<!--
+- 和 isPrime、factorial 一樣：剛剛的程式，只要換掉頭尾
+- [click] scanf 是 input
+- [click] printf 是 output
+-->
 
 ---
 layout: figure
@@ -295,13 +342,17 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" size="1.25rem">
 
-<p>input 變成<strong>參數</strong>：<code>m</code>、<code>n</code> 由呼叫的人給</p>
+<p>input → <strong>parameter</strong></p>
 
-<p>output 變成 <strong>return</strong></p>
-
-<p>中間算的部分，一行都不用改</p>
+<p>output → <strong>return</strong></p>
 
 </CodeBlock>
+
+<!--
+- input 變成參數：m、n 由呼叫的人給，不用 scanf 了
+- output 變成 return：return m;
+- 中間算的部分，一行都不用改
+-->
 
 ---
 layout: figure
@@ -324,10 +375,14 @@ code: |
 
 <p class="answer-badge">✓ 正解</p>
 
-<p><code>main</code> 和 prototype 題目都給了，只要寫這個 function</p>
+<p><code>gcd(80, 48)</code> → <code>16</code></p>
 
-<p>藏起來的 <code>main</code> 呼叫 <code>gcd(80, 48)</code>，拿到 <code>16</code></p>
-
-<p>輸入 <code>942 165</code>：印出 <code>The GCD of 942 and 165 is 3.</code></p>
+<p><code>942 165</code> → <code>3</code></p>
 
 </CodeBlock>
+
+<!--
+- 正解：main 和 prototype 題目都給了，只要寫這個 function
+- 藏起來的 main 呼叫 gcd(80, 48)，拿到 16
+- 輸入 942 165：印出 The GCD of 942 and 165 is 3.
+-->

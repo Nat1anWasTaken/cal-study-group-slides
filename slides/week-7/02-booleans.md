@@ -17,11 +17,16 @@ main: |
 
 <CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main">
 
-`linear(5)` 換回來的值是一個 <code class="type">int</code>
-
-所以接住它的 `y` 也宣告成 <code class="type">int</code>
+回傳 <code class="type">int</code> → 用 <code class="type">int</code> 接
 
 </CodeCall>
+
+<!--
+- 回到 linear：它回傳的 13 是一個整數
+- [click] linear(5) 換成 13
+- 換回來的值是 int，所以接住它的 y 也要宣告成 int
+- 值是有型別的，那有沒有不是整數的回傳值？
+-->
 
 ---
 layout: figure
@@ -42,6 +47,12 @@ main: |
 
 <CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main" />
 
+<!--
+- 看另一個 function：is_even，判斷是不是偶數
+- 前面寫的不是 int，是 bool
+- 先看 return 後面那串 expression 到底算出什麼
+-->
+
 ---
 layout: figure
 transition: view-transition
@@ -56,11 +67,19 @@ expr: |
 
 <CodeExpr :expr="$frontmatter.expr" name="expr">
 
-<p v-click="1">假設 <code>x</code> 是 <code>4</code></p>
+<p v-click="1"><code>x</code> = <code>4</code></p>
 
-<p v-click="4">算到最後只會剩下 <code class="type">true</code> 或 <code class="type">false</code>，這種值的型別就是 <code class="type">bool</code></p>
+<p v-click="4"><code class="type">true</code> / <code class="type">false</code> → <code class="type">bool</code></p>
 
 </CodeExpr>
+
+<!--
+- 把 return 後面的 expression 拿出來算
+- [click] 假設 x 是 4
+- [click] 4 % 2 → 0
+- [click] 0 == 0 → true
+- [click] 算到最後只會剩下 true 或 false，這種值的型別就叫 bool
+-->
 
 ---
 layout: figure
@@ -79,9 +98,16 @@ main: |
 
 <CodeCall :main="$frontmatter.main" only-main>
 
-`if` 括號裡放的，就是一個會算出 <code class="type">bool</code> 的 expression
+<code>if</code> 的條件 = <code class="type">bool</code>
 
 </CodeCall>
+
+<!--
+- 其實大家早就在用 bool 了
+- if 括號裡放的，就是一個會算出 bool 的 expression
+- [click] score 換成 75
+- [click] 75 >= 60 → true，所以進去印 pass
+-->
 
 ---
 layout: figure
@@ -95,9 +121,15 @@ clicks: 8
 
 <ForCondition>
 
-`for` 的第二個 expression 也是，每一圈都重新算一次
+每一圈重算一次 <code class="type">bool</code>
 
 </ForCondition>
+
+<!--
+- for 的第二個 expression 也是 bool
+- 每一圈都重新算一次：true 就繼續，false 就停
+- 一路點下去，看 i < 3 每圈算出什麼
+-->
 
 ---
 layout: figure
@@ -118,14 +150,27 @@ main: |
 
 <CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main">
 
-<p v-click="3"><code class="type">x % 2 == 0</code> 算出來是 <code class="type">true</code>，所以 return 的就是 <code class="type">true</code></p>
+<p v-click="3">return <code class="type">true</code></p>
 
-<p v-click="4"><code>is_even(4)</code> 就被換成 <code class="type">true</code></p>
+<p v-click="4"><code>is_even(4)</code> → <code class="type">true</code></p>
 
 </CodeCall>
+
+<!--
+- 把 is_even(4) 整個跑一次
+- [click] x 換成 4
+- [click] 4 % 2 → 0
+- [click] 0 == 0 → true，所以 return 的就是 true
+- [click] main 裡的 is_even(4) 被換成 true，if 成立，印 even
+-->
 
 ---
 layout: statement
 ---
 
 # if 和 for 的條件*其實就是 Boolean！*
+
+<!--
+- 結論：if 和 for 的條件其實就是 bool
+- 會回傳 bool 的 function，就可以直接放進 if 裡
+-->
