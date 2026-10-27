@@ -4,9 +4,10 @@ import { useSlideContext } from '@slidev/client'
 import { parse, render } from '../utils/codeMarkup'
 
 // A standalone block of code in the same card style as CodeCall, using the
-// markup in utils/codeMarkup.ts.
+// markup in utils/codeMarkup.ts. `size` overrides the small default font.
 const props = defineProps<{
   code: string
+  size?: string
 }>()
 
 const { $clicks } = useSlideContext()
@@ -16,7 +17,7 @@ const Body = defineComponent(() => () => render(tree.value, $clicks.value))
 </script>
 
 <template>
-  <pre class="snippet code-markup"><code><Body /></code></pre>
+  <pre class="snippet code-markup" :style="{ fontSize: size }"><code><Body /></code></pre>
 </template>
 
 <style scoped>

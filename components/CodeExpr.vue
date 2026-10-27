@@ -5,10 +5,11 @@ import { parse, render } from '../utils/codeMarkup'
 
 // A single line of code, centered and large, using the markup in
 // utils/codeMarkup.ts. `name` lets it pick up a view transition from the
-// same code on the previous slide.
+// same code on the previous slide. `size` shrinks a long line to fit.
 const props = defineProps<{
   expr: string
   name?: string
+  size?: string
 }>()
 
 const { $clicks } = useSlideContext()
@@ -19,7 +20,7 @@ const ExprBody = defineComponent(() => () => render(tree.value, $clicks.value))
 
 <template>
   <div class="code-expr">
-    <pre class="expr code-markup" :style="{ viewTransitionName: name }"><ExprBody /></pre>
+    <pre class="expr code-markup" :style="{ viewTransitionName: name, fontSize: size }"><ExprBody /></pre>
     <div class="notes">
       <slot />
     </div>
