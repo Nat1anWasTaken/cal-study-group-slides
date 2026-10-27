@@ -13,14 +13,14 @@ layout: section
 layout: figure
 clicks: 2
 code: |
-  int main(void) {
+  int main(void) %%1:circle.blue:{%%
       int %%1:circle.blue:score%% = 75;
-      if (score >= 60) {
+      if (score >= 60) %%2:circle.red:{%%
           int %%2:circle.red:bonus%% = 5;
           printf("%d", %%1:underline.blue:score%% + %%2:underline.red:bonus%%);
-      }
+      %%2:circle.red:}%%
       printf("%d", ~~bonus~~);
-  }
+  %%1:circle.blue:}%%
 ---
 
 # 全域變數是什麼東東？
@@ -48,9 +48,9 @@ layout: figure
 transition: view-transition
 code: |
   int main(void) {
-      for (^^decl-i:int i = 0^^; i < 3; i++) {
+      for (^^decl-i:int i = 0^^; i < 3; i++) %%0:circle.red:{%%
           printf("%d", i);
-      }
+      %%0:circle.red:}%%
       printf("%d", ~~i~~);
   }
 ---
@@ -74,13 +74,13 @@ code: |
 ---
 layout: figure
 code: |
-  int main(void) {
+  int main(void) %%0:circle.blue:{%%
       ^^decl-i:int i;^^
       for (i = 0; i < 3; i++) {
           printf("%d", i);
       }
       printf("%d", @@i@@);
-  }
+  %%0:circle.blue:}%%
 ---
 
 # 全域變數是什麼東東？
@@ -107,11 +107,11 @@ clicks: 15
 code: |
   int main(void) {
       int n = 3;
-      while (n > 0) {
+      while (n > 0) %%0:circle.red:{%%
           ^^decl-sum:int sum = 0;^^
           sum = sum + n;
           n--;
-      }
+      %%0:circle.red:}%%
       printf("%d", ~~sum~~);
   }
 ---
@@ -141,7 +141,7 @@ code: |
 layout: figure
 clicks: 3
 code: |
-  int main(void) {
+  int main(void) %%0:circle.blue:{%%
       int n = 3;
       ^^decl-sum:int sum = 0;^^
       while (n > 0) {
@@ -149,7 +149,7 @@ code: |
           n--;
       }
       printf("%d", @@sum@@);
-  }
+  %%0:circle.blue:}%%
 ---
 
 # 全域變數是什麼東東？
