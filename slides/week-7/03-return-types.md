@@ -13,11 +13,11 @@ layout: figure
 transition: view-transition
 clicks: 3
 fn: |
-  %%1:box.red:bool%% is_even(int x) {
+  %%1:box.red:bool%% isEven(int x) {
       return %%2:box.red:<<x % 2 == 0>>%%;
   }
 main: |
-  if ([[3!:is_even(4)|true]]) {
+  if ([[3!:isEven(4)|true]]) {
       printf("even\n");
   }
 ---
@@ -34,15 +34,15 @@ main: |
 
 <p v-click="2">return → <code class="type">true</code> / <code class="type">false</code></p>
 
-<p v-click="3"><code>is_even(4)</code> → <code class="type">bool</code></p>
+<p v-click="3"><code>isEven(4)</code> → <code class="type">bool</code></p>
 
 </CodeCall>
 
 <!--
-- 還記得 is_even 嗎？
+- 還記得 isEven 嗎？
 - [click] 函式名稱前面寫的 bool，就是回傳型別
 - [click] 它保證 return 出來的值，一定是 true 或 false
-- [click] 所以 is_even(4) 換回來的，就是一個 bool
+- [click] 所以 isEven(4) 換回來的，就是一個 bool
 -->
 
 ---
@@ -111,7 +111,7 @@ main: |
 ---
 layout: figure
 boolFn: |
-  <<bool>> is_even(int x) {
+  <<bool>> isEven(int x) {
       return x % 2 == 0;
   }
 intFn: |

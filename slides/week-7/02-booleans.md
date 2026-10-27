@@ -32,11 +32,11 @@ main: |
 layout: figure
 transition: view-transition
 fn: |
-  <<bool>> is_even(int x) {
+  <<bool>> isEven(int x) {
       return ^^expr:x % 2 == 0^^;
   }
 main: |
-  if (is_even(4)) {
+  if (isEven(4)) {
       printf("even\n");
   }
 ---
@@ -48,7 +48,7 @@ main: |
 <CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main" />
 
 <!--
-- 看另一個 function：is_even，判斷是不是偶數
+- 看另一個 function：isEven，判斷是不是偶數
 - 前面寫的不是 int，是 bool
 - 先看 return 後面那串 expression 到底算出什麼
 -->
@@ -135,11 +135,11 @@ clicks: 8
 layout: figure
 clicks: 4
 fn: |
-  <<bool>> is_even(int x) {
+  <<bool>> isEven(int x) {
       return [[3:[[2:[[1:x|4]] % 2|0]] == 0|true]];
   }
 main: |
-  if ([[4!:is_even(4)|true]]) {
+  if ([[4!:isEven(4)|true]]) {
       printf("even\n");
   }
 ---
@@ -152,16 +152,16 @@ main: |
 
 <p v-click="3">return <code class="type">true</code></p>
 
-<p v-click="4"><code>is_even(4)</code> → <code class="type">true</code></p>
+<p v-click="4"><code>isEven(4)</code> → <code class="type">true</code></p>
 
 </CodeCall>
 
 <!--
-- 把 is_even(4) 整個跑一次
+- 把 isEven(4) 整個跑一次
 - [click] x 換成 4
 - [click] 4 % 2 → 0
 - [click] 0 == 0 → true，所以 return 的就是 true
-- [click] main 裡的 is_even(4) 被換成 true，if 成立，印 even
+- [click] main 裡的 isEven(4) 被換成 true，if 成立，印 even
 -->
 
 ---
