@@ -59,3 +59,15 @@
 .code-markup .cm {
   color: var(--google-muted);
 }
+
+/* "✓ 正解" label on each problem's answer slide */
+
+.answer-badge {
+  display: inline-block;
+  padding: 0.2rem 1rem;
+  border-radius: 99px;
+  background: #e6f4ea;
+  color: var(--google-green-dark) !important;
+  font-size: 28px !important;
+  font-weight: 700;
+}
