@@ -30,7 +30,7 @@ watch($clicks, (clicks) => {
 
 const rounds = computed(() => Array.from({ length: props.limit + 1 }, (_, i) => ({
   i,
-  result: i < props.limit ? 'true' : 'false',
+  result: i < props.limit ? '1' : '0',
 })))
 
 // The round whose result currently sits in the code, if any.
