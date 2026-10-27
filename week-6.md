@@ -616,3 +616,13 @@ layout: section
 ---
 
 # Let's move on to <br> the real problems!
+
+---
+layout: figure
+---
+
+# Problems
+
+::figure::
+
+<LinkQr url="https://cycu-cal.nath.tw" />
