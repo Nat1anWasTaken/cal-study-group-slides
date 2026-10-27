@@ -11,7 +11,8 @@ import { h, resolveDirective, Transition, withDirectives } from 'vue'
 //   ~~int y = f();~~     code that does not compile
 //   ^^expr:x % 2^^       gives the code a view-transition-name
 //   @@i < 3@@            highlights the code without replacing it
-//   %%1:box.red:bool%%   a hand-drawn v-mark on click 1 (type.color modifiers)
+//   %%1:box.red:bool%%   a hand-drawn v-mark on click 1 (type.color modifiers),
+//                        or already drawn when the click is 0
 // Comments (`// ...` and `/* ... */`) are greyed out, even across markup.
 
 export type Node =
@@ -140,7 +141,7 @@ export function render(nodes: Node[], clicks: number, inBool = false): VNodeChil
     if (node.type === 'mark') {
       const mark = resolveDirective('mark')!
       const modifiers = Object.fromEntries(node.modifiers.map(m => [m, true]))
-      return [withDirectives(h('span', { class: 'mark' }, render(node.children, clicks, inBool)), [[mark, { at: node.at, padding: 2 }, '', modifiers]])]
+      return [withDirectives(h('span', { class: 'mark' }, render(node.children, clicks, inBool)), [[mark, { at: node.at || false, padding: 2 }, '', modifiers]])]
     }
     if (node.type === 'named')
       return [h('span', { style: { display: 'inline-block', viewTransitionName: node.name } }, render(node.children, clicks, inBool))]
