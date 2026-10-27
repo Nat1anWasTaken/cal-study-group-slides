@@ -615,7 +615,7 @@ code.type {
 layout: section
 ---
 
-# Rest!
+# Take a break!
 
 ---
 layout: section
