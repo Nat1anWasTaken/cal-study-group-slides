@@ -59,10 +59,20 @@ body,
 
 .slidev-layout h1 {
   max-width: 46rem;
-  margin: 0 0 1rem;
-  font-size: 42px;
+  /* Content title: shared by every non-hero layout so titles never jump */
+  margin: 0 0 0.45rem;
+  font-size: 34px;
   font-weight: 600;
   line-height: 1.18;
+}
+
+/* Hero titles keep their own size per layout, plus a looser gap */
+.slidev-layout.cover h1,
+.slidev-layout.section h1,
+.slidev-layout.end h1,
+.slidev-layout.statement h1,
+.slidev-layout.quote h1 {
+  margin-bottom: 1rem;
 }
 
 .slidev-layout h1 + p {
@@ -643,11 +653,6 @@ body,
   height: 100%;
 }
 
-.slidev-layout.image-left h1,
-.slidev-layout.image-right h1 {
-  font-size: 38px;
-}
-
 .google-image-callout {
   margin-top: 1.5rem;
 }
@@ -682,13 +687,6 @@ body,
   letter-spacing: 0;
   line-height: 1.45;
   text-transform: none;
-}
-
-.slidev-layout.figure h1,
-.slidev-layout.figure-side h1,
-.slidev-layout.flow h1 {
-  margin-bottom: 0.45rem;
-  font-size: 34px;
 }
 
 .slidev-layout.figure h1 + p,

@@ -591,12 +591,6 @@ example: |
 </div>
 
 <style>
-/* Match the title size of the figure layout used by the other pages */
-h1 {
-  margin-bottom: 0.45rem;
-  font-size: 34px;
-}
-
 .recap {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
