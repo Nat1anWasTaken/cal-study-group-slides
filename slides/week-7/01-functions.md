@@ -182,6 +182,10 @@ transition: view-transition
 ---
 layout: figure
 transition: view-transition
+fn: |
+  int linear(int x) {
+      return 2 * x + 3;
+  }
 main: |
   int y = linear(5);
   printf("%d\n", y);
@@ -191,7 +195,7 @@ main: |
 
 ::figure::
 
-<CodeCall :main="$frontmatter.main">
+<CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main">
 
 <div v-click class="answer">13</div>
 
@@ -216,6 +220,10 @@ main: |
 layout: figure
 transition: view-transition
 clicks: 1
+fn: |
+  int linear(int x) {
+      return 2 * x + 3;
+  }
 main: |
   int y = [[linear(5)|13]];
   printf("%d\n", y);
@@ -225,7 +233,7 @@ main: |
 
 ::figure::
 
-<CodeCall :main="$frontmatter.main" dim />
+<CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main" dim />
 
 <!--
 - 重點來了：function call 算完之後，整個 linear(5) 會被換成它 return 的值
@@ -235,6 +243,10 @@ main: |
 ---
 layout: figure
 transition: view-transition
+fn: |
+  int linear(int x) {
+      return 2 * x + 3;
+  }
 main: |
   int y = {{13}};
   printf("%d\n", y);
@@ -244,7 +256,7 @@ main: |
 
 ::figure::
 
-<CodeCall :main="$frontmatter.main" dim />
+<CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main" dim />
 
 <!--
 - 所以這行其實就等於 int y = 13;
@@ -255,6 +267,10 @@ main: |
 layout: figure
 transition: view-transition
 clicks: 1
+fn: |
+  int linear(int x) {
+      return 2 * x + 3;
+  }
 main: |
   if ([[linear(5)|13]] > 10) {
       printf("big\n");
@@ -265,7 +281,7 @@ main: |
 
 ::figure::
 
-<CodeCall :main="$frontmatter.main" dim />
+<CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main" dim />
 
 <!--
 - 既然 call 會變成一個值，值能放的地方它都能放
@@ -277,6 +293,10 @@ main: |
 layout: figure
 transition: view-transition
 clicks: 1
+fn: |
+  int linear(int x) {
+      return 2 * x + 3;
+  }
 main: |
   printf("%d\n", [[linear(5)|13]]);
 ---
@@ -285,7 +305,7 @@ main: |
 
 ::figure::
 
-<CodeCall :main="$frontmatter.main" dim />
+<CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main" dim />
 
 <!--
 - 直接丟進 printf 也行
@@ -296,6 +316,10 @@ main: |
 layout: figure
 transition: view-transition
 clicks: 2
+fn: |
+  int linear(int x) {
+      return 2 * x + 3;
+  }
 main: |
   int z = [[2:[[1:linear(5)|13]] * 2|26]];
   printf("%d\n", z);
@@ -305,7 +329,7 @@ main: |
 
 ::figure::
 
-<CodeCall :main="$frontmatter.main" dim />
+<CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main" dim />
 
 <!--
 - 放進算式裡也行
@@ -317,6 +341,10 @@ main: |
 layout: figure
 transition: view-transition
 clicks: 2
+fn: |
+  int linear(int x) {
+      return 2 * x + 3;
+  }
 main: |
   int y = [[2:linear([[1:linear(1)|5]])|13]];
   printf("%d\n", y);
@@ -326,7 +354,7 @@ main: |
 
 ::figure::
 
-<CodeCall :main="$frontmatter.main" dim />
+<CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main" dim />
 
 <!--
 - 甚至 call 裡面再放 call：裡面的先算
@@ -337,6 +365,10 @@ main: |
 ---
 layout: figure
 clicks: 1
+fn: |
+  int linear(int x) {
+      return 2 * x + 3;
+  }
 main: |
   for (int i = 0; i < [[linear(1)|5]]; i++) {
       printf("%d\n", i);
@@ -347,7 +379,7 @@ main: |
 
 ::figure::
 
-<CodeCall :main="$frontmatter.main" dim />
+<CodeCall :fn="$frontmatter.fn" :main="$frontmatter.main" dim />
 
 <!--
 - for 的條件裡也可以
