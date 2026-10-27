@@ -10,15 +10,15 @@ layout: cover
 # Week 7: Functions
 
 ---
-src: ./week-7/01-functions.md
+src: ./slides/week-7/01-functions.md
 ---
 
 ---
-src: ./week-7/02-booleans.md
+src: ./slides/week-7/02-booleans.md
 ---
 
 ---
-src: ./week-7/03-return-types.md
+src: ./slides/week-7/03-return-types.md
 ---
 
 ---
@@ -44,43 +44,43 @@ layout: figure
 <LinkQr url="https://cycu-cal.nath.tw" />
 
 ---
-src: ./week-7/04-prototype.md
+src: ./slides/week-7/04-prototype.md
 ---
 
 ---
-src: ./week-7/05-scope.md
+src: ./slides/week-7/05-scope.md
 ---
 
 ---
-src: ./week-7/06-nonsense.md
+src: ./slides/week-7/06-nonsense.md
 ---
 
 ---
-src: ./week-7/07-is-prime-factor-of.md
+src: ./slides/week-7/07-is-prime-factor-of.md
 ---
 
 ---
-src: ./week-7/08-factorial.md
+src: ./slides/week-7/08-factorial.md
 ---
 
 ---
-src: ./week-7/09-gcd.md
+src: ./slides/week-7/09-gcd.md
 ---
 
 ---
-src: ./week-7/11-is-factorial-of.md
+src: ./slides/week-7/11-is-factorial-of.md
 ---
 
 ---
-src: ./week-7/12-is-factorial-of-some-n.md
+src: ./slides/week-7/12-is-factorial-of-some-n.md
 ---
 
 ---
-src: ./week-7/13-add-sum.md
+src: ./slides/week-7/13-add-sum.md
 ---
 
 ---
-src: ./week-7/14-float-equal.md
+src: ./slides/week-7/14-float-equal.md
 ---
 
 ---
