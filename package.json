@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@slidev/cli": "^52.19.0",
+    "qrcode": "1.5.4",
     "vue": "^3.5.33"
   },
   "devDependencies": {
