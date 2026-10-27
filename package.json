@@ -2,6 +2,7 @@
   "name": "cal-study-group",
   "type": "module",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "slidev --open",

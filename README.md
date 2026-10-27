@@ -11,3 +11,7 @@ pnpm install
 pnpm dev week-7.md           # preview a deck locally
 pnpm build                   # build every week-*.md deck into dist/
 ```
+
+## License
+
+[MIT](LICENSE)
