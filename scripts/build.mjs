@@ -46,7 +46,7 @@ writeFileSync(path.join(outDir, 'index.html'), `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>cal-study-group</title>
+  <title>cal-study-group-slides</title>
   <style>
     body { margin: 0; padding: 3rem 1rem; font-family: system-ui, sans-serif; background: #fff; color: #1a1a1a; }
     main { max-width: 40rem; margin: 0 auto; }
@@ -59,7 +59,7 @@ writeFileSync(path.join(outDir, 'index.html'), `<!doctype html>
 </head>
 <body>
   <main>
-    <h1>cal-study-group</h1>
+    <h1>cal-study-group-slides</h1>
     <ul>
 ${decks.map(deck => `      <li><a href="${base}${deck.name}/">${escapeHtml(deck.title)}</a></li>`).join('\n')}
     </ul>
