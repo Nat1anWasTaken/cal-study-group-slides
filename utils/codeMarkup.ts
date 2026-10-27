@@ -12,9 +12,10 @@ import { h, resolveDirective, Transition, withDirectives } from 'vue'
 //   ^^expr:x % 2^^       gives the code a view-transition-name
 //   @@i < 3@@            highlights the code without replacing it
 //   %%1:box.red:bool%%   a hand-drawn v-mark on click 1 (type.color modifiers)
+// Comments (`// ...` and `/* ... */`) are greyed out, even across markup.
 
 export type Node =
-  | { type: 'text', text: string }
+  | { type: 'text', text: string, comment?: boolean }
   | { type: 'value', text: string }
   | { type: 'type' | 'error' | 'focus', children: Node[] }
   | { type: 'named', name: string, children: Node[] }
@@ -23,6 +24,9 @@ export type Node =
 
 export function parse(src: string): Node[] {
   let i = 0
+  // Comments can span several text nodes (a v-mark inside a doc comment),
+  // so whether we are in one is tracked across the whole parse.
+  let comment: '' | 'line' | 'block' = ''
 
   function readUntil(end: string) {
     const j = src.indexOf(end, i)
@@ -36,7 +40,7 @@ export function parse(src: string): Node[] {
     let text = ''
     const flush = () => {
       if (text)
-        out.push({ type: 'text', text })
+        out.push(comment ? { type: 'text', text, comment: true } : { type: 'text', text })
       text = ''
     }
     while (i < src.length) {
@@ -86,6 +90,20 @@ export function parse(src: string): Node[] {
         i += 2
         out.push({ type: 'value', text: readUntil('}}') })
       }
+      else if (!comment && (src.startsWith('//', i) || src.startsWith('/*', i))) {
+        flush()
+        comment = src[i + 1] === '/' ? 'line' : 'block'
+        text += src.slice(i, i + 2)
+        i += 2
+      }
+      else if ((comment === 'block' && src.startsWith('*/', i)) || (comment === 'line' && src[i] === '\n')) {
+        if (comment === 'block') {
+          text += '*/'
+          i += 2
+        }
+        flush()
+        comment = ''
+      }
       else {
         text += src[i++]
       }
@@ -97,7 +115,7 @@ export function parse(src: string): Node[] {
   return nodes()
 }
 
-const TOKEN = /("(?:[^"\\]|\\.)*")|\b(int|bool|true|false|void|return|if|else|for|while)\b/g
+const TOKEN = /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)')|\b(int|float|char|bool|true|false|void|return|if|else|for|while)\b/g
 
 function highlight(text: string): VNodeChild[] {
   const out: VNodeChild[] = []
@@ -116,7 +134,7 @@ function highlight(text: string): VNodeChild[] {
 export function render(nodes: Node[], clicks: number, inBool = false): VNodeChild[] {
   return nodes.flatMap((node): VNodeChild[] => {
     if (node.type === 'text')
-      return highlight(node.text)
+      return node.comment ? [h('span', { class: 'cm' }, node.text)] : highlight(node.text)
     if (node.type === 'value')
       return [h('span', { class: 'slot value' }, node.text)]
     if (node.type === 'mark') {
