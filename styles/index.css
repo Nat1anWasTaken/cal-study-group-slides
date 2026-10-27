@@ -1,0 +1,57 @@
+/* Markup rendered by utils/codeMarkup.ts */
+
+.code-markup .kw {
+  color: #a0414c;
+}
+
+.code-markup .str {
+  color: #b45309;
+}
+
+.code-markup .slot {
+  display: inline-block;
+  padding: 0 0.2em;
+  border-radius: 0.35rem;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.code-markup .slot.call {
+  background: var(--google-blue-soft);
+  box-shadow: inset 0 -3px 0 var(--google-blue);
+}
+
+.code-markup .slot.type {
+  background: #fce8e6;
+  box-shadow: inset 0 -3px 0 var(--google-red);
+}
+
+.code-markup .error {
+  text-decoration: underline wavy var(--google-red);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25em;
+}
+
+.code-markup .slot.value {
+  background: #e6f4ea;
+  box-shadow: inset 0 -3px 0 var(--google-green);
+}
+
+.code-markup .swap-enter-active,
+.code-markup .swap-leave-active {
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.code-markup .swap-enter-from {
+  opacity: 0;
+  transform: translateY(0.4em) scale(0.8);
+}
+
+.code-markup .swap-leave-to {
+  opacity: 0;
+  transform: translateY(-0.4em) scale(0.8);
+}
+
+.code-markup .mark {
+  display: inline-block;
+  padding: 0 0.15em;
+}
