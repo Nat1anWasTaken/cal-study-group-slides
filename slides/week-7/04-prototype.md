@@ -70,7 +70,7 @@ code: |
 
 <CodeBlock :code="$frontmatter.code" :scan="[2, 7]" size="1.3rem">
 
-<p>解法一：搬上去</p>
+<p class="answer-badge">解法一：搬上去</p>
 
 <p v-click="2">已經看過了 ✓</p>
 
@@ -158,7 +158,7 @@ code: |
 
 <CodeBlock :code="$frontmatter.code">
 
-<p>解法二：先列「名片」</p>
+<p class="answer-badge">解法二：先列「名片」</p>
 
 <p>型別 + 名字 + 參數 + <strong>;</strong></p>
 
