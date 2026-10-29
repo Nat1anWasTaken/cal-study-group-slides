@@ -41,7 +41,7 @@ main: |
 <!--
 - 還記得 isEven 嗎？
 - [click] 函式名稱前面寫的 bool，就是回傳型別
-- [click] return 後的比較運算先得到 int 的 0 或 1，回傳時再轉成 bool 的假或真
+- [click] 它保證 return 出來的值，一定是 true 或 false
 - [click] 所以 isEven(4) 換回來的，就是一個 bool
 -->
 
