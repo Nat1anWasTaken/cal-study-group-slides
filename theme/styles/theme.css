@@ -661,8 +661,7 @@ body,
   color: var(--google-blue);
 }
 
-.slidev-layout.figure,
-.slidev-layout.flow {
+.slidev-layout.figure {
   display: flex;
   flex-direction: column;
 }
@@ -676,8 +675,7 @@ body,
 
 /* Section name as a running footer in the bottom-right corner */
 .slidev-layout.figure .google-kicker,
-.slidev-layout.figure-side .google-kicker,
-.slidev-layout.flow .google-kicker {
+.slidev-layout.figure-side .google-kicker {
   position: absolute;
   right: 4rem;
   bottom: 1.7rem;
@@ -689,8 +687,7 @@ body,
   text-transform: none;
 }
 
-.slidev-layout.figure h1 + p,
-.slidev-layout.flow h1 + p {
+.slidev-layout.figure h1 + p {
   max-width: none;
   margin: 0;
   font-size: 20px;
@@ -764,90 +761,6 @@ body,
 
 .google-source p {
   margin: 0;
-}
-
-.google-flow {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 2.4rem minmax(0, 1fr) 2.4rem minmax(0, 1fr);
-  margin-top: 1.5rem;
-}
-
-.google-flow-step {
-  padding: 1.2rem 1.25rem;
-  border: 1px solid var(--google-border);
-  border-radius: 1rem;
-  background: white;
-  box-shadow: var(--google-shadow);
-}
-
-.google-flow-step h3 {
-  margin-bottom: 0.3rem;
-  font-size: 23px;
-}
-
-.google-flow-step p {
-  margin: 0.35rem 0;
-  color: var(--google-muted);
-  font-size: 17px;
-  line-height: 1.45;
-}
-
-.google-flow-arrow {
-  position: relative;
-  align-self: center;
-  justify-self: center;
-  width: 1.5rem;
-  height: 3px;
-  border-radius: 99px;
-  background: var(--google-gray);
-}
-
-.google-flow-arrow::after {
-  position: absolute;
-  top: -5px;
-  right: 0;
-  width: 10px;
-  height: 10px;
-  border-top: 3px solid var(--google-gray);
-  border-right: 3px solid var(--google-gray);
-  content: '';
-  transform: rotate(45deg);
-}
-
-.slidev-layout.flow.has-figure .google-flow {
-  margin-top: 0.9rem;
-}
-
-.slidev-layout.flow.has-figure .google-flow-step {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding: 0.7rem 1rem;
-  box-shadow: 0 4px 18px rgba(60, 64, 67, 0.08);
-}
-
-.slidev-layout.flow.has-figure .google-card-icon {
-  flex: none;
-  margin-bottom: 0;
-}
-
-.slidev-layout.flow.has-figure .google-flow-step h3 {
-  margin: 0;
-  font-size: 20px;
-}
-
-.slidev-layout.flow.has-figure .google-flow-step p {
-  margin: 0;
-  font-size: 15px;
-}
-
-.google-flow-after {
-  margin-top: 1rem;
-}
-
-.google-flow-after p {
-  margin: 0;
-  font-size: 20px;
 }
 
 @media print {
