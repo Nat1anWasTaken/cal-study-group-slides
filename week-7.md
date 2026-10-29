@@ -28,7 +28,7 @@ layout: cover
 layout: default
 ---
 
-# 今天的流程
+# Today's agenda 
 
 1. 理解 C 裡面的 Functions
 2. Short Break
