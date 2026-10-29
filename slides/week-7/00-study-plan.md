@@ -21,3 +21,17 @@ layout: default
 - 這場讀書會的目的，是讓大家對程式的運行有一個基礎的概念
 - 先從 C 開始，因為概念是共通的，之後換語言也用得上
 -->
+
+---
+layout: quote
+---
+
+# “Every sentence I utter must be understood not as an affirmation, but as a question.”
+
+— Niels Bohr
+
+<!--
+- 這場讀書會鼓勵、也歡迎大家隨時提問
+- 聽不懂可以直接打斷我，不用等到最後
+- 有想法也歡迎提出來一起討論
+-->
