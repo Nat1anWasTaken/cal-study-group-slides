@@ -25,6 +25,26 @@ layout: cover
 -->
 
 ---
+layout: default
+---
+
+# 今天的流程
+
+1. **Functions**：從數學的 f(x) 到 C
+2. **Booleans**：true / false 與條件
+3. **回傳型別**：`bool`、`int`、`void`
+4. 休息
+5. **題目**：一題一題講，每題附正解
+6. **Recap**
+
+<!--
+- 先看一下今天會做什麼
+- 前半段講觀念：function、boolean、回傳型別
+- 休息完開始寫題目，每題最後都會講正解
+- 最後回顧今天學到的東西
+-->
+
+---
 src: ./slides/week-7/01-functions.md
 ---
 
