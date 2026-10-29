@@ -30,12 +30,10 @@ layout: default
 
 # 今天的流程
 
-1. **Functions**：從數學的 f(x) 到 C
-2. **Booleans**：true / false 與條件
-3. **回傳型別**：`bool`、`int`、`void`
-4. 休息
-5. **題目**：一題一題講，每題附正解
-6. **Recap**
+1. 理解 C 裡面的 Functions
+2. Short Break
+3. 這週的 Cal 題目
+4. Recap
 
 <!--
 - 先看一下今天會做什麼
