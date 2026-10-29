@@ -7,6 +7,16 @@ canvasWidth: 980
 layout: cover 
 ---
 
+# About this Study Group
+
+---
+src: ./slides/week-7/00-study-plan.md
+---
+
+---
+layout: cover
+---
+
 # Week 7: Functions
 
 <!--
