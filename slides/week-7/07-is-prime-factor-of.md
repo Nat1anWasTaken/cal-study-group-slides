@@ -163,7 +163,7 @@ code: |
 - [click] 從 main 開始：呼叫 isPrimeFactorOf(179, 358)
 - [click] 跳進 function，代進去：test_no 是 179，num 是 358
 - [click] isPrime(179)：179 是質數，true
-- [click] 358 % 179 == 0：整除，true
+- [click] 左側為 true，才繼續算右側：358 % 179 == 0，整除，true
 - [click] 兩邊都是 true，&& 才是 true
 - [click] 回到 main，ans 拿到 true
 -->
@@ -173,7 +173,7 @@ layout: figure
 clicks: 6
 code: |
   <<bool>> isPrimeFactorOf(int test_no, int num) {
-      return [[5:[[3!:isPrime([[2:test_no|4]])|false]] && [[4:[[2:num|16]] % [[2:test_no|4]] == 0|true]]|false]];
+      return [[5:[[3!:isPrime([[2:test_no|4]])|false]] && %%4:underline.red:[[2:num|16]] % [[2:test_no|4]] == 0%%|false]];
   }
 
   int main(void) {
@@ -189,13 +189,17 @@ code: |
 
 <p v-click="2"><code>test_no</code> = <code>4</code><br><code>num</code> = <code>16</code></p>
 
-<p v-click="4">整除 ✓　質數 ✗</p>
+<p v-click="4"><code>&amp;&amp;</code> 左側為 <code class="type">false</code><br>右側不執行（短路）</p>
 
-<p v-click="5"><code class="type">false</code> <code>&amp;&amp;</code> <code class="type">true</code> → <code class="type">false</code></p>
+<p v-click="5">整個條件 → <code class="type">false</code></p>
 
 <p v-click="6"><code>ans</code> = <code class="type">false</code></p>
 
 </CodeBlock>
+
+::source::
+
+註：<code>a &amp;&amp; b</code> 會先算 <code>a</code>；<code>a</code> 為 <code class="type">false</code> 時，結果已經確定，<code>b</code> 完全不會執行，這叫短路求值（short-circuit evaluation）。<code>||</code> 則是 <code>a</code> 為 <code class="type">true</code> 時跳過 <code>b</code>。詳見 <a href="https://en.cppreference.com/w/c/language/operator_logical" target="_blank">cppreference</a>
 
 <style>
 /* keep the card as wide as the unevaluated line, so the panel stays put */
@@ -209,8 +213,8 @@ code: |
 - [click] main 呼叫 isPrimeFactorOf(4, 16)
 - [click] 跳進 function，代進去：test_no 是 4，num 是 16
 - [click] isPrime(4)：4 = 2 × 2，不是質數，false
-- [click] 16 % 4 == 0，4 是 16 的因數，true，但它不是質數
-- [click] 只要一邊是 false，&& 的結果就是 false
+- [click] && 由左往右算，左側已經是 false，所以短路：右側的 16 % 4 == 0 不會執行；底線標出被跳過的部分
+- [click] 不必算右側，&& 的結果就確定是 false
 - [click] ans 拿到 false
 -->
 
@@ -248,8 +252,13 @@ code: |
 
 </CodeBlock>
 
+::source::
+
+註：<code>test_no</code> 為 <code>0</code> 時，<code>isPrime(0)</code> 回傳 <code class="type">false</code>，<code>&amp;&amp;</code> 短路跳過右側，所以不會執行 <code>num % 0</code>（除以 0 是未定義行為）。詳見 <a href="https://en.cppreference.com/w/c/language/operator_logical" target="_blank">cppreference</a>
+
 <!--
 - 正解：先寫好 isPrime，記得 n < 2（0、1）不是質數，要直接 return false
 - isPrimeFactorOf 只有一行：是質數 && 能整除，就是質因數
+- test_no 小於 2 時，isPrime 先回傳 false，&& 會跳過右側；test_no 是 0 時，也就不會執行除以 0 的取餘數運算
 - main 和 prototype 題目都給了，只要寫 function
 -->
